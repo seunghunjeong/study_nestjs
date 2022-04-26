@@ -6,20 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.MadeCrudService = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const made_c_controller_1 = require("./made-c/made-c.controller");
-const made_crud_module_1 = require("./made-crud/made-crud.module");
-let AppModule = class AppModule {
+let MadeCrudService = class MadeCrudService {
+    create(createMadeCrudDto) {
+        return 'This action adds a new madeCrud';
+    }
+    findAll() {
+        return `This action returns all madeCrud`;
+    }
+    findOne(id) {
+        return `This action returns a #${id} madeCrud`;
+    }
+    update(id, updateMadeCrudDto) {
+        return `This action updates a #${id} madeCrud`;
+    }
+    remove(id) {
+        return `This action removes a #${id} madeCrud`;
+    }
 };
-AppModule = __decorate([
-    (0, common_1.Module)({
-        imports: [made_crud_module_1.MadeCrudModule],
-        controllers: [app_controller_1.AppController, made_c_controller_1.MadeCController],
-        providers: [app_service_1.AppService],
-    })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+MadeCrudService = __decorate([
+    (0, common_1.Injectable)()
+], MadeCrudService);
+exports.MadeCrudService = MadeCrudService;
+//# sourceMappingURL=made-crud.service.js.map

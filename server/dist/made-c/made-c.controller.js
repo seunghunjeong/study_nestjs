@@ -6,20 +6,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.MadeCController = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const made_c_controller_1 = require("./made-c/made-c.controller");
-const made_crud_module_1 = require("./made-crud/made-crud.module");
-let AppModule = class AppModule {
+let MadeCController = class MadeCController {
 };
-AppModule = __decorate([
-    (0, common_1.Module)({
-        imports: [made_crud_module_1.MadeCrudModule],
-        controllers: [app_controller_1.AppController, made_c_controller_1.MadeCController],
-        providers: [app_service_1.AppService],
-    })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+MadeCController = __decorate([
+    (0, common_1.Controller)('made-c')
+], MadeCController);
+exports.MadeCController = MadeCController;
+//# sourceMappingURL=made-c.controller.js.map
