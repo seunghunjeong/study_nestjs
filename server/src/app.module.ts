@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MadeCController } from './made-c/made-c.controller';
-import { MadeCrudModule } from './made-crud/made-crud.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [MadeCrudModule],
-  controllers: [AppController, MadeCController],
+  imports: [UsersModule],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
