@@ -8,8 +8,8 @@ import {
   Delete,
   Res,
   HttpCode,
-  BadRequestException,
-  Header,
+  Redirect,
+  Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -31,13 +31,10 @@ export class UsersController {
     return res.status(200).send(users);
   }
 
-  @Header('Custom', 'Test Header')
+  @Redirect('https://nestjs.com', 301)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    if (-id < 1) {
-      throw new BadRequestException('id는 0보다 큰 값이어야 합니다.');
-    }
-    return this.usersService.findOne(-id);
+    return this.usersService.findOne(+id);
   }
 
   @HttpCode(202)
@@ -49,5 +46,21 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
+  }
+
+  @Get('redirect/docs')
+  @Redirect('/users/1', 302)
+  getDocs(@Query('version') version) {
+    if (version && version === '5') {
+      return { url: '/users/1', statusCode: 200 };
+    }
+  }
+
+  @Delete(':userId/memo/:memoId')
+  deleteUserMemo(
+    @Param('userId') userId: string,
+    @Param('memoId') memoId: string,
+  ) {
+    return `userId: ${userId}, memoId: ${memoId}`;
   }
 }

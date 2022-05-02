@@ -29,16 +29,21 @@ let UsersController = class UsersController {
         return res.status(200).send(users);
     }
     findOne(id) {
-        if (-id < 1) {
-            throw new common_1.BadRequestException('id는 0보다 큰 값이어야 합니다.');
-        }
-        return this.usersService.findOne(-id);
+        return this.usersService.findOne(+id);
     }
     update(id, updateUserDto) {
         return this.usersService.update(+id, updateUserDto);
     }
     remove(id) {
         return this.usersService.remove(+id);
+    }
+    getDocs(version) {
+        if (version && version === '5') {
+            return { url: '/users/1', statusCode: 200 };
+        }
+    }
+    deleteUserMemo(userId, memoId) {
+        return `userId: ${userId}, memoId: ${memoId}`;
     }
 };
 __decorate([
@@ -56,7 +61,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Header)('Custom', 'Test Header'),
+    (0, common_1.Redirect)('https://nestjs.com', 301),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -79,6 +84,22 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('redirect/docs'),
+    (0, common_1.Redirect)('/users/1', 302),
+    __param(0, (0, common_1.Query)('version')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getDocs", null);
+__decorate([
+    (0, common_1.Delete)(':userId/memo/:memoId'),
+    __param(0, (0, common_1.Param)('userId')),
+    __param(1, (0, common_1.Param)('memoId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "deleteUserMemo", null);
 UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

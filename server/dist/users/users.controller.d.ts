@@ -9,4 +9,9 @@ export declare class UsersController {
     findOne(id: string): string;
     update(id: string, updateUserDto: UpdateUserDto): string;
     remove(id: string): string;
+    getDocs(version: any): {
+        url: string;
+        statusCode: number;
+    };
+    deleteUserMemo(userId: string, memoId: string): string;
 }
