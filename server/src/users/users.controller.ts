@@ -21,7 +21,9 @@ export class UsersController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    const { name, email } = createUserDto;
+
+    return `유저를 생성했습니다. 이름: ${name}, 이메일: ${email}`;
   }
 
   @Get()
@@ -31,7 +33,6 @@ export class UsersController {
     return res.status(200).send(users);
   }
 
-  @Redirect('https://nestjs.com', 301)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);

@@ -22,7 +22,8 @@ let UsersController = class UsersController {
         this.usersService = usersService;
     }
     create(createUserDto) {
-        return this.usersService.create(createUserDto);
+        const { name, email } = createUserDto;
+        return `유저를 생성했습니다. 이름: ${name}, 이메일: ${email}`;
     }
     findAll(res) {
         const users = this.usersService.findAll();
@@ -61,7 +62,6 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Redirect)('https://nestjs.com', 301),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
