@@ -8,15 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
+const api_controller_controller_1 = require("./api-controller/api-controller.controller");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [users_module_1.UsersModule],
-        controllers: [app_controller_1.AppController],
+        controllers: [api_controller_controller_1.ApiController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);
